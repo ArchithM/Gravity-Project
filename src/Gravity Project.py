@@ -54,26 +54,21 @@ def collide_balls(ball1, ball2):
     dy = ball2.y - ball1.y
     distance = math.sqrt(dx**2 + dy**2)
     if distance < ball1.radius + ball2.radius:
-        # Calculate angle of collision
         angle = math.atan2(dy, dx)
         # Calculate total mass
         total_mass = 1 + 1  # Assuming equal mass for simplicity
 
-        # Calculate velocities along the line of collision
         v1 = (ball1.velocity_x * math.cos(angle) + ball1.velocity_y * math.sin(angle))
         v2 = (ball2.velocity_x * math.cos(angle) + ball2.velocity_y * math.sin(angle))
 
-        # Calculate new velocities after collision (1D collision formula)
         new_v1 = (v1 * (1 - 1) + 2 * 1 * v2) / total_mass
         new_v2 = (v2 * (1 - 1) + 2 * 1 * v1) / total_mass
 
-        # Update velocities in x and y directions
         ball1.velocity_x += (new_v1 - v1) * math.cos(angle)
         ball1.velocity_y += (new_v1 - v1) * math.sin(angle)
         ball2.velocity_x += (new_v2 - v2) * math.cos(angle)
         ball2.velocity_y += (new_v2 - v2) * math.sin(angle)
 
-        # Separate the balls to prevent sticking
         overlap = 0.5 * (ball1.radius + ball2.radius - distance)
         ball1.x -= overlap * math.cos(angle)
         ball1.y -= overlap * math.sin(angle)
