@@ -55,8 +55,7 @@ def collide_balls(ball1, ball2):
     distance = math.sqrt(dx**2 + dy**2)
     if distance < ball1.radius + ball2.radius:
         angle = math.atan2(dy, dx)
-        # Calculate total mass
-        total_mass = 1 + 1  # Assuming equal mass for simplicity
+        total_mass = 1 + 1  
 
         v1 = (ball1.velocity_x * math.cos(angle) + ball1.velocity_y * math.sin(angle))
         v2 = (ball2.velocity_x * math.cos(angle) + ball2.velocity_y * math.sin(angle))
